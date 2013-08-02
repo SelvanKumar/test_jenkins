@@ -48,6 +48,29 @@
  
   </dependencies>
   <build>
-    <finalName>SpringMVC</finalName>
+    <finalName>${project.artifactId}-${project.version}</finalName>
+	<plugins>
+			<!-- Maven Tomcat Plugin -->
+			<plugin>
+               <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <!-- Tomcat 7 has a different manager path - text - than other versions -->
+                    <url>http://localhost:8080/manager/text</url>
+                    <!-- Refer to the server settings in your ~/.m2/settings.xml -->
+                    <server>dev-tomcat</server>
+                    <path>/${project.artifactId}-${project.version}</path>
+                </configuration>
+            </plugin>
+			<!-- Maven compiler plugin -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
   </build>
 </project>
